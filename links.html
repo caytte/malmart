@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <style>
+      body{
+        background: #edf1f2;
+        font-family: "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .header {
+        margin: 0;
+        padding: 32px 0 0 0;
+        font-family: "Futura","Century Gothic", "Arial";
+        text-align: center;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+      .header span {
+        font-family: futura, "ヒラギノ角ゴ ProN E3";
+        font-size: 12px;
+        color: #333;
+      }
+      .header h1{
+        background: linear-gradient(100deg,#2b8c8b 48%,#edf1f2 0%, #edf1f2 49%, #edf1f2 6%);
+        border: 5px solid #2b8c8b;
+        color: #fff;
+        font-family: "futura", "ヒラギノ角ゴ ProN E3";
+        letter-spacing: 10px;
+        font-weight: 500;
+        margin: 0;
+        padding: 0 0 6px 10px;
+        display: inline;
+        width: auto;
+      }
+      .header ul {
+        margin: 0;
+        padding: 12px 15px;
+        background: #edf1f2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .header li {
+        list-style: none;
+        margin: 0 12px;
+      }
+      .header li a{
+        margin: 0;
+        color: #333333;
+        font-weight: 500;
+        display: inline;
+        text-decoration: none;
+      }
+      .header li a:hover {
+        color: #2b8c8b;
+      }
+      .container {
+        margin: 0;
+        padding: 12px 12px 12px 0;
+        display: flex;
+        justify-content: left;
+        item-align: center;
+      }
+      .container li {
+        list-style: square;
+        padding: 12px 0;
+        text-algin: center;
+      }
+      .container a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 300;
+        font-family: "futura", "ヒラギノ角ゴ ProN E3";
+      }
+      .container a:hover {
+        border-bottom: 1px solid #555;
+      }
+    </style>
+    <header class="header">
+    <h1>丸<span style="color:#2b8c8b">Pay</span></h1>
+    <span>Request Form (beta)</span>
+      <ul>
+        <li><a href="<?= getAppUrl() ?>?page=index">Home</a></li>
+        <li><a href="<?= getAppUrl() ?>?page=requests">Requests</a></li>
+        <li><a href="<?= getAppUrl() ?>?page=links">Links</a></li>
+      </ul>
+    </header>
+    <div class="container">
+      <ul>
+        <li><a href="https://hslab.w3.kanazawa-u.ac.jp/dokuwiki/doku.php?id=index" target="_blank" rel="noopener noreferrer">H.S.LAB (Website)</a></li>
+        <li><a href="https://x.com/HSLAB_Kanazawa" target="_blank" rel="noopener noreferrer">H.S.LAB (Twitter)</a></li>
+        <li><a href="https://script.google.com/macros/s/{GAS_ID}/exec" target="_blank" rel="noopener noreferrer">丸Pay</a></li>
+      </ul> 
+    </div>
+  </body>
+</html>
