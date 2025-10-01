@@ -1,0 +1,196 @@
+/*丸マートリクエストページのindex.html*/
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <style>
+      body{
+        background: #edf1f2;
+        font-family: "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+      .header {
+        margin: 0;
+        padding: 32px 0 0 0;
+        font-family: "Futura","Century Gothic", "Arial";
+        text-align: center;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .header span {
+        font-family: futura, "ヒラギノ角ゴ ProN E3";
+        font-size: 12px;
+        color: #333;
+      }
+      .header h1{
+        background: linear-gradient(100deg,#2b8c8b 48%,#edf1f2 0%, #edf1f2 49%, #edf1f2 6%);
+        border: 5px solid #2b8c8b;
+        color: #fff;
+        font-family: "futura", "ヒラギノ角ゴ ProN E3";
+        letter-spacing: 10px;
+        font-weight: 500;
+        margin: 0;
+        padding: 0 0 6px 10px;
+        display: inline;
+        width: auto;
+        overflow: hidden;
+        font-size: 32px;
+      }
+      .header ul {
+        margin: 0;
+        padding: 12px 15px;
+        background: #edf1f2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .header li {
+        list-style: none;
+        margin: 0 12px;
+      }
+      .header li a{
+        margin: 0;
+        color: #333333;
+        font-weight: 500;
+        display: inline;
+        text-decoration: none;
+      }
+      .header li a:hover {
+        color: #2b8c8b;
+      }
+      
+      /* コンテンツ部分のスタイル */
+      .container {
+        margin: 20px auto;
+        padding: 0 15px;
+        width:100%
+        display: flex;
+      }
+      
+      .page-title {
+        text-align: center;
+        color: #2b8c8b;
+        margin-bottom: 30px;
+      }
+      
+      /* 商品グリッドのスタイル */
+      .items-grid {
+        display: inline-block;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+      
+      .item-card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .item-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      }
+      
+      .item-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+      
+      .item-details {
+        padding: 15px;
+      }
+      
+      .item-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        color: #333;
+      }
+      
+      .request-count {
+        display: inline-block;
+        background: #2b8c8b;
+        color: white;
+        padding: 3px 10px;
+        border-radius: 15px;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+      
+      .request-btn {
+        background: #2b8c8b;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s ease;
+        margin-top: 10px;
+        width: 100%;
+      }
+      
+      .request-btn:hover {
+        background: #236e6d;
+      }
+      
+      .request-btn.requested {
+        background: #ccc;
+        cursor: not-allowed;
+      }
+      
+      /* アニメーション */
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
+      
+      .pulse {
+        animation: pulse 0.5s ease;
+      }
+      
+      /* フィードバックメッセージ */
+      .feedback {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #2b8c8b;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 4px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: opacity 0.3s, transform 0.3s;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      
+      .feedback.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+    <header class="header">
+    <h1>丸<span style="color:#2b8c8b">Pay</span></h1>
+    <span>Request Form (beta)</span>
+      <ul>
+        <li><a href="<?= getAppUrl() ?>?page=index">Home</a></li>
+        <li><a href="<?= getAppUrl() ?>?page=requests">Requests</a></li>
+        <li><a href="<?= getAppUrl() ?>?page=links">Links</a></li>
+      </ul>
+    </header>
+    <div style="text-align:center;font-size:12px">
+      <span style="color:#aaa";>Copyright © Ito Keito Some Rights Reserved.</span>
+    </div>
+  </body>
+</html>
