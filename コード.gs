@@ -1,4 +1,4 @@
-//malpay_combined2.py用スクリプト
+//main.py用決済実行メインスクリプト
 const MAGICWORD = 'CaLeNdAr'
 function doPost(req) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Sheet1');
