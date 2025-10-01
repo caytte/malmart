@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <style>
+      body{
+        background: #edf1f2;
+        font-family: "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+      .header {
+        margin: 0;
+        padding: 32px 0 0 0;
+        font-family: "Futura","Century Gothic", "Arial";
+        text-align: center;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+
+      }
+      .header span {
+        font-family: futura, "ヒラギノ角ゴ ProN E3";
+        font-size: 12px;
+        color: #333;
+      }
+      .header h1{
+        background: linear-gradient(100deg,#2b8c8b 48%,#edf1f2 0%, #edf1f2 49%, #edf1f2 6%);
+        border: 5px solid #2b8c8b;
+        color: #fff;
+        font-family: "futura", "ヒラギノ角ゴ ProN E3";
+        letter-spacing: 10px;
+        font-weight: 500;
+        margin: 0;
+        padding: 0 0 6px 10px;
+        display: inline;
+        width: auto;
+      }
+      .header ul {
+        margin: 0;
+        padding: 12px 15px;
+        background: #edf1f2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .header li {
+        list-style: none;
+        margin: 0 12px;
+      }
+      .header li a{
+        margin: 0;
+        color: #333333;
+        font-weight: 500;
+        display: inline;
+        text-decoration: none;
+      }
+      .header li a:hover {
+        color: #2b8c8b;
+      }
+      /* Reset button styles */
+      .reset-container {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      
+      .reset-btn {
+        background: #eeeeee;
+        color: #333;
+        border: none;
+        padding: 10px 20px;
+        margin: 64px 0;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s ease;
+        font-size: 14px;
+      }
+      
+      .reset-btn:hover {
+        background: #aaaaaa;
+        color: white;
+      }
+    </style>
+    <header class="header">
+    <h1>丸<span style="color:#2b8c8b">Pay</span></h1>
+    <span>Request Form (beta)</span>
+      <ul>
+        <li><a href="<?= getAppUrl() ?>?page=index">Home</a></li>
+        <li><a href="<?= getAppUrl() ?>?page=requests">Requests</a></li>
+        <li><a href="<?= getAppUrl() ?>?page=links">Links</a></li>
+      </ul>
+    </header>
+    <div style="text-align:center">
+    <!-- Reset button -->
+      <div class="reset-container">
+        <button class="reset-btn" onclick="resetAllRequests()">Reset All Requests</button>
+      </div>
+      </div>
+    <script>
+      // Reset all requests function
+      function resetAllRequests() {
+        if (confirm('Reset all requests? This action cannot be undone.')) {
+          // Clear local storage
+          localStorage.removeItem('requestedItems');
+          
+          // Call Google Apps Script reset function
+          google.script.run
+            .withSuccessHandler(function(result) {
+              if (result.success) {
+                // Enable all buttons
+                for (let i = 0; i < 10; i++) {
+                  const btn = document.getElementById(`btn-${i}`);
+                  const countEl = document.getElementById(`count-${i}`);
+                  
+                  if (btn) {
+                    btn.classList.remove('requested');
+                    btn.textContent = 'Request Item';
+                    btn.disabled = false;
+                  }
+                  
+                  if (countEl) {
+                    countEl.textContent = '0';
+                  }
+                }
+                
+                // Reset server-side user request status
+                google.script.run
+                  .withSuccessHandler(function() {
+                    showFeedback('All requests have been reset');
+                  })
+                  .resetUserRequestStatus();
+                
+              } else {
+                showFeedback('An error occurred during reset');
+              }
+            })
+            .withFailureHandler(function(error) {
+              showFeedback('An error occurred: ' + error);
+            })
+            .resetAllRequestCounts();
+        }
+      }
+    </script>
+  </body>
+</html>
