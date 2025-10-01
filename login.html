@@ -1,0 +1,544 @@
+<!-- coded by itoh 2023 -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <style>
+      body {
+        background: #edf1f2;
+        margin: 0 auto;
+        font-family: "Century Gothic","Hiragino Sans";
+        width: 320px;
+      }
+      .header {
+        background: #edf1f2;
+        border-bottom: 10px dashed #edf1f2;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        margin: 24px 0 0 0;
+        padding: 0;
+        top: 0;
+        left: 0;
+        text-align: center;
+        width: 100%;
+      }
+      .header h1 {
+        color: #edf1f2;
+        font-weight: 600;
+        font-size: 85px;
+        font-family: 游明朝,serif;
+        margin: 24px 0 0 0;
+      }
+      .h1 {
+        background-color: #9aacd6;
+        border-radius: 100px;
+        display: flex;
+        position: relative;
+        padding: 0;
+        height: 80px;
+        width: 80px;
+      }
+      .h1::before {
+        content:"丸";
+        font-family: "游明朝";
+        position: absolute;
+        color: #edf1f2;
+        font-size: 85px;
+        padding: 0;
+        top: -20px;
+        left: 0;
+      }
+      .mas_con {
+        display: flex;
+        justify-content: center;
+      }
+      .container {
+        margin: 110px 0 0 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loader {
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #9aacd6;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+        margin-top: 48px;
+        display: none; /* 初期状態では非表示 */
+      }
+
+      #idInput {
+        border: none;
+        border-radius: 120px;
+        box-shadow: 0px 8px 6px -5px #ddd inset;
+        color: #aaa;
+        font-size: 24px;
+        margin: 18px 24px;
+        padding: 0 24px;
+        text-align: left;
+        height: 80px;
+        width: 220px;
+        background-image: -webkit-appearance: none;
+        appearance: none;
+      }
+      #passwordInput {
+        border: none;
+        border-radius: 120px;
+        box-shadow: 0px 8px 6px -5px #ddd inset;
+        color: #aaa;
+        font-size: 24px;
+        margin: 18px 24px;
+        padding: 0 24px;
+        text-align: left;
+        height: 80px;
+        width: 220px;
+        background-image: -webkit-appearance: none;
+        appearance: none;
+      }
+
+      #valueInput {
+        border: none;
+        border-radius: 120px;
+        box-shadow: 0px 8px 6px -5px #ddd inset;
+        color: #aaa;
+        font-size: 24px;
+        margin: 18px 24px;
+        padding: 0 24px;
+        text-align: left;
+        height: 80px;
+        width: 220px;
+        background-image: -webkit-appearance: none;
+        appearance: none;
+      }
+
+      .use_icon{
+        color: #ccc;
+        display: inline-block;
+        font-family: FontAwesome,"Century Gothic";
+        font-style: normal;
+        font-size: 28px;
+        font-weight: normal;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .use_icon::-webkit-input-placeholder {
+        color: #ccc;
+      }
+
+      .class1 {
+        background: #edf1f2;
+        border-radius: 21px;
+        text-align: center;
+        padding: 0;
+        margin: 32px;
+        height: auto;
+        width: 100%;
+      }
+ 
+      button {
+        display: inline-block;
+        border: none;
+        border-radius: 118px;
+        padding: 15px 0;
+        margin: 38px 18px;
+        text-decoration: none;
+        background: #8bb1d7;
+        color:#fff;
+        font-family: "Hiragino Sans","Century Gothic";
+        font-size: 32px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 80px;
+        text-align: center;
+        transition: background 250ms ease-in-out,
+          transform 150ms ease;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+      }
+
+      #button1 {
+        background: #d78b8b;
+        color: #fff;
+      }
+ 
+      #message {
+        background: #fff;
+        border-radius: 100px;
+        color: #d45845;
+        margin: 24px 0 18px 0;
+        font-weight: bold;
+        font-family: "Hiragino Sans","Century Gothic";
+        font-size: 12px;
+        padding: 0;
+      }
+      
+      .fp {
+        color: #aaa;
+        font-family: "Century Gothic","Hiragino Sans";
+        margin: 0;
+        padding: 0;
+      }
+      .fp a{
+        font-size: 12px;
+        color: #aaa;
+        font-family: "Century Gothic","Hiragino Sans";
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      center {
+        color:  #bbb;
+        font-family: "游ゴシック";
+        font-size: 12px;
+        margin: 12px 0;
+      }
+      center a {
+        margin: 12px 0;
+        color: #bbb;
+        font-size: 12px;
+        font-weight: 600;
+        font-family: "游ゴシック";
+        text-decoration: none;
+      }
+ 
+      .footer {
+        background: #fff;
+        border-top: 10px dashed #edf1f2;
+        position: fixed;
+        margin: 0;
+        padding: 24px 0 24px 0;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        width: 100%;
+      }
+      //ローディングアニメーション
+      .topCurtainbg, .bottomCurtainbg {
+          display: block;
+          content: "";
+          position:fixed;
+          z-index: 999;
+          width: 100%;
+          height: 100vh;
+          top: 0;
+          background-color: #fff;
+          animation-duration:1.2s;
+          animation-timing-function:ease-in-out;
+          animation-fill-mode:forwards;
+      }
+
+      .topCurtainbg {
+          top: 0%;
+          transform: scaleY(0);
+          animation-name:curtainAnimeTop;
+      }
+
+      .bottomCurtainbg {
+          left: 0%;
+          bottom: 0%;
+          transform: scaleY(1);
+          animation-name:curtainAnimeBottom;
+      }
+
+      @keyframes curtainAnimeTop {
+        0% {
+          transform-origin:top;
+          transform:scaleY(1);
+        }
+        50% {
+          transform-origin:top;
+        }
+        100% {
+          transform-origin:top;
+          transform:scaleY(0);
+        }
+      }
+
+      @keyframes curtainAnimeBottom {
+        0% {
+          transform-origin:bottom;
+          transform:scaleY(1);
+        }
+        50% {
+          transform-origin:bottom;
+        }
+        100% {
+          transform-origin:bottom;
+          transform:scaleY(0);
+        }
+      }
+
+      .fadeout {
+        animation : fadeOut 0.8s;
+        animation-fill-mode: both;
+      }
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      body.pageOn #container{
+        animation-name:PageAnimeOn;
+        animation-duration:1s;
+        animation-delay: 0.2s;
+        animation-fill-mode:forwards;
+        opacity: 0;
+      }
+
+      @keyframes PageAnimeOn{
+        0% {
+        opacity: 0;
+        }
+        100% {
+        opacity: 1;
+      }
+      }
+      //ローディングアニメーションここまで
+      .header_message {
+        background: #edf1f2;
+        border-left: 26px solid #7BB5A3;
+        color: #555;
+        font-size: 8px;
+        font-family: sans-serif;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+      }
+
+      .header_message2 {
+        background: #edf1f2;
+        border-left: 26px solid #d45845;
+        color: #d45845;
+        font-size: 8px;
+        font-family: sans-serif;
+        text-align: center;
+        position: fixed;
+        top: 18px;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+      }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <!--
+    <div class="header_message">
+      <b>DID YOU KNOW THAT YOU CAN ADD THIS WEB APP TO YOUR HOME SCREEN?</b>
+    </div>
+    <div class="header_message2" style="border-left:#d45845">
+      <b>DISPLAY SIZE ERROR IS NOW OCCRUING. THIS MAYBE CAUSED BY GOOGLE.</b>
+    </div>
+    -->
+    <div class="header">
+      <h1><span class="h1"></span></h1>
+    </div>
+    <div class="mas_con">
+    <div class="container">
+      <div class="class1">
+        <div id="message"></div>
+        <div id="currentAmount"></div>
+        <center style="color:#777;font-family:FontAwesome,sans-serif,游明朝"><b>2.0</b></center>
+        <input type="text" class="use_icon" id="idInput" placeholder="&#xf007">
+        <input type="password" class="use_icon" id="passwordInput" placeholder="&#xf023">
+        <input type="number" class="use_icon" id="valueInput" placeholder="&#xf157" inputmode="numeric">
+        <button id="button1" onclick="top_up()"><span class="icon ">
+          <i class="fas fa-check"></i></span>
+        </button>
+        <button id="button2" onclick="check()"><span class="icon ">
+          <i class="fas fa-info"></i></span>
+        </button>
+        <div id="loader" class="loader"></div>
+      </div>
+    </div>
+    </div>
+    <div style="margin: 0 0 64px 0">
+    <center><a href="#" style="color:#8bb1d7;font-family:FontAwesome">Forgotten password?</a></center>
+    <center>or</center>
+    <center><a href="#" style="color:#d78b8b;font-family:FontAwesome">Sign up</a></center>
+    <center style="padding:32px 0 0 0;color:#777;font-family:sans-serif,游明朝"><b>丸Pay ToppingUp Ver. 2.0</b></center>
+    </div>
+    <!--
+    <div class="footer">
+     <div class="fp">
+     </div>
+    -->
+    <audio id="audioPlayer" style="display: none;"></audio>
+ 
+    <script>
+      // ログイン情報の自動入力処理
+      window.addEventListener('DOMContentLoaded', function() {
+        var idInput = document.getElementById('idInput');
+        var passwordInput = document.getElementById('passwordInput');
+ 
+        // ローカルストレージからログイン情報を取得
+        var savedId = localStorage.getItem('savedId');
+        var savedPassword = localStorage.getItem('savedPassword');
+ 
+        if (savedId && savedPassword) {
+          idInput.value = savedId;
+          passwordInput.value = savedPassword;
+        }
+      });
+
+      //チャージボタンの動作
+      function top_up() {
+        var id = document.getElementById('idInput').value;
+        var password = document.getElementById('passwordInput').value;
+        var toppin_value = document.getElementById('valueInput').value;
+ 
+        // ログイン情報をローカルストレージに保存(とりあえず将来のために)
+        localStorage.setItem('savedId', id);
+        localStorage.setItem('savedPassword', password);
+ 
+        // ボタンを非活性化し、処理アニメーションを表示する
+        document.getElementById('button1').style.display = 'none';
+        document.getElementById('button2').style.display = 'none';
+        document.getElementById('idInput').disabled = true;
+        document.getElementById('passwordInput').disabled = true;
+        document.getElementById('valueInput').disabled = true;
+        document.getElementById('loader').style.display = 'block';
+        document.getElementById('message').innerText = '';
+ 
+        google.script.run.withSuccessHandler(showMessage).processToppingUp(id, password, toppin_value);
+      }
+      //チェックボタンの動作
+      function check() {
+        var id = document.getElementById('idInput').value;
+        var password = document.getElementById('passwordInput').value;
+ 
+        // ログイン情報をローカルストレージに保存(とりあえず将来のために)
+        localStorage.setItem('savedId', id);
+        localStorage.setItem('savedPassword', password);
+ 
+        // ボタンを非活性化し、処理アニメーションを表示する
+        document.getElementById('button1').style.display = 'none';
+        document.getElementById('button2').style.display = 'none';
+        document.getElementById('idInput').disabled = true;
+        document.getElementById('passwordInput').disabled = true;
+        document.getElementById('valueInput').disabled = true;
+        document.getElementById('loader').style.display = 'block';
+        document.getElementById('message').innerText = '';
+ 
+        google.script.run.withSuccessHandler(showMessage).processCheck(id, password);
+      }
+ 
+      function showMessage(message) {
+        // メッセージを表示し、処理アニメーションを非表示にする
+        document.getElementById('message').innerText = message;
+        document.getElementById('loader').style.display = 'none';
+ 
+        // ボタンを再活性化
+        document.getElementById('button1').style.display = 'inline-block';
+        document.getElementById('button2').style.display = 'inline-block';
+        document.getElementById('idInput').disabled = false;
+        document.getElementById('passwordInput').disabled = false;
+        document.getElementById('valueInput').disabled = false;
+        // 成功時に完了音(iD)を再生する
+        var pattern = 'COMPLETED';
+        if (message.includes(pattern) == true) {
+          playAudio_S();
+        }
+
+        // 確認時に照会音(iD)を再生する
+        var pattern = 'ON';
+        if (message.includes(pattern) == true) {
+          playAudio_A();
+        }
+
+        //失敗時に失敗音を再生する
+        var pattern = 'DENIED';
+        if (message.includes(pattern) == true) {
+          playAudio_F();
+        }
+      }
+      function playAudio_S() {
+        var audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.src = 'https://drive.google.com/uc?export=download&id=音源ID';
+        audioPlayer.play();
+        // Safariでは自動再生できないため、ユーザーのインタラクションにより再生する
+        document.addEventListener('click', function playAudioOnInteraction() {
+          audioPlayer.play();
+          document.removeEventListener('click', playAudioOnInteraction); // 再生後はイベントリスナーを削除
+        });
+      }
+      function playAudio_F() {
+        var audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.src = 'https://drive.google.com/uc?export=download&id=音源ID';
+        audioPlayer.play();
+        // Safariでは自動再生できないため、ユーザーのインタラクションにより再生する
+        document.addEventListener('click', function playAudioOnInteraction() {
+          audioPlayer.play();
+          document.removeEventListener('click', playAudioOnInteraction); // 再生後はイベントリスナーを削除
+        });
+      }
+      function playAudio_A() {
+        var audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.src = 'https://drive.google.com/uc?export=download&id=音源ID';
+        audioPlayer.play();
+        // Safariでは自動再生できないため、ユーザーのインタラクションにより再生する
+        document.addEventListener('click', function playAudioOnInteraction() {
+          audioPlayer.play();
+          document.removeEventListener('click', playAudioOnInteraction); // 再生後はイベントリスナーを削除
+        });
+      }
+      //ローディングアニメーション
+      // bodyタグを取得
+      const documentBody = document.querySelector('body');
+      // body直下に上部のカーテン
+      var newElement1 = document.createElement("div");
+      newElement1.setAttribute("class","topCurtainbg");
+      documentBody.prepend(newElement1);
+      // body直下に下部のカーテン
+      var newElement2 = document.createElement("div");
+      newElement2.setAttribute("class","bottomCurtainbg");
+      documentBody.prepend(newElement2);
+
+
+      // bodyタグにclassを付与
+      documentBody.classList.add('pageOn');
+
+      // 1.5秒経ったらオーバーレイ非表示
+      setTimeout(function(){ 
+          newElement1.style.display = "none";
+          newElement2.style.display = "none";
+        }, 1500);
+
+      // ページ遷移時にフェードアウト
+      window.addEventListener("beforeunload", () => {
+        documentBody.classList.add('fadeout');
+        setTimeout(function(){ 
+          documentBody.style.display = "none"; 
+        }, 1000);
+      }, false);
+      </script>
+    
+  </body>
+</html>
