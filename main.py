@@ -45,7 +45,7 @@ class PaymentApp:
         self.right_frame = tk.Frame(root, bg="#346272")
         self.right_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=0, pady=0)
     
-        self.app_script_url = "https://script.google.com/macros/s/AKfycbxgX2OmPEM0XSaJlka3fa3aP7xsWgfJ9jHCyWjSwco8aqhjvDMnm1mZZ9SX6G2QKNlb/exec"
+        self.app_script_url = "https://script.google.com/macros/s/{YOUR_GAS_ID}/exec"
     
         self.setup_logo()
         self.setup_console()
@@ -243,7 +243,7 @@ class PaymentApp:
         
     def check_status_process1(self):
         try:
-            url = "https://script.google.com/macros/s/AKfycbxgX2OmPEM0XSaJlka3fa3aP7xsWgfJ9jHCyWjSwco8aqhjvDMnm1mZZ9SX6G2QKNlb/"
+            url = "https://script.google.com/macros/s/{YOUR_GAS_ID}/"
             response = requests.get(url, timeout=5)
             status = "ONLINE" if response.status_code == 200 else "OFFLINE"
         except requests.RequestException:
@@ -398,4 +398,5 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = PaymentApp(root)
     root.mainloop()
+
 
