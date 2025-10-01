@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Aug 16 15:00:02 2024
-
-@author: Caytte Itoh
-
-(c)2024~ All rights reserved.
-"""
-
 ###Load packages
 import tkinter as tk
 from tkinter import ttk
@@ -350,18 +341,7 @@ class PaymentApp:
             date_str = current_time.strftime("%d / %m / %Y")
             
             user_data = {
-                "b'012e5ce6de843949'": ("ITOH", "B5"),
-                "b'012e5d000ccb4b56'": ("MATSUDA", "B19"),
-                "b'012e5ce6de884567'": ("Kawai", "B3"),
-                "b'012e50f4d8d55825'": ("SHIMA", "B17"),
-                "b'012e5ce6de843b21'": ("NAGAO", "B8"),
-                "b'0113030008174316'": ("Maru", "B2"),
-                "b'012e5d000cca505d'": ("Hu", "B12"),
-                "b'012e5ce6de874e61'": ("ZHOU", "B11"),
-                "b'012e5ce6de893c43'": ("Kana", "B13"),
-                "b'012e5ce6de864940'": ("Noel", "B20"),
-                "b'012e5d000cca4a23'": ("Hong", "B21"),
-                "b'012e58a80f974a2d'": ("seta", "B6")
+                "b'012e5ce6de843949'": ("YOUR_NAME", "EXCELL_CELL_ID"),
             }
             
             if idm in user_data:
@@ -418,3 +398,4 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = PaymentApp(root)
     root.mainloop()
+
