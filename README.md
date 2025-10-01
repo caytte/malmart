@@ -118,7 +118,7 @@ Raspberry PiとFeliCa対応の学生証、そしてQRコード経由のWebアプ
 
     ```python
     user_data = {
-        "b'012e5ce6de843949'": ("ITOH", "B5"),
+        "b'012e5ce6de843949'": ("YOUR_NAME", "EXCELL_CELL_ID(like B1)"),
         # 新規ユーザーを追加...
     }
     ```
